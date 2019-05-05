@@ -1,5 +1,13 @@
 $(document).ready(function ($) {
-	"use strict";
+	loadSite($)
+	const newPagesId = ["accounts-parent", "home-page", "user-info"]
+	document.body.addEventListener('DOMNodeInserted', function (event) {
+		if (newPagesId.includes(event.target.id)) {
+			loadSite($)
+		}
+	}, false);
+});
+function loadSite($) {
 	// loader
 	var loader = function () {
 		setTimeout(function () {
@@ -15,14 +23,17 @@ $(document).ready(function ($) {
 			loop: true,
 			margin: 10,
 			nav: true,
-			stagePadding: 5,
+			stagePadding: 10,
 			navText: ['<span class="icon-chevron-left"/>', '<span class="icon-chevron-right"/>'],
 			responsive: {
-				0: {
+				500: {
+					items: 1
+				},
+				650: {
 					items: 2
 				},
-				600: {
-					items: 2
+				800: {
+					items: 3
 				},
 				1000: {
 					items: 4
@@ -32,85 +43,29 @@ $(document).ready(function ($) {
 	};
 	carousel();
 
-	// scroll
-	var scrollWindow = function () {
-		$(window).scroll(function () {
-			var $w = $(this),
-				st = $w.scrollTop(),
-				navbar = $('.site_navbar'),
-				sd = $('.js-scroll-wrap');
-
-			if (st > 150) {
-				if (!navbar.hasClass('scrolled')) {
-					navbar.addClass('scrolled');
-				}
-			}
-			if (st < 150) {
-				if (navbar.hasClass('scrolled')) {
-					navbar.removeClass('scrolled sleep');
-				}
-			}
-			if (st > 350) {
-				if (!navbar.hasClass('awake')) {
-					navbar.addClass('awake');
-				}
-
-				if (sd.length > 0) {
-					sd.addClass('sleep');
-				}
-			}
-			if (st < 350) {
-				if (navbar.hasClass('awake')) {
-					navbar.removeClass('awake');
-					navbar.addClass('sleep');
-				}
-				if (sd.length > 0) {
-					sd.removeClass('sleep');
-				}
-			}
-		});
-	};
-	scrollWindow();
-
 	var counter = function () {
-
 		$('#section-counter').waypoint(function (direction) {
-
 			if (direction === 'down' && !$(this.element).hasClass('site-animated')) {
-
 				var comma_separator_number_step = $.animateNumber.numberStepFactories.separator(',')
 				$('.site-number').each(function () {
 					var $this = $(this),
 						num = $this.data('number');
 					console.log(num);
-					$this.animateNumber(
-						{
-							number: num,
-							numberStep: comma_separator_number_step
-						}, 7000
-					);
+					$this.animateNumber({
+						number: num,
+						numberStep: comma_separator_number_step
+					}, 7000);
 				});
-
 			}
-
 		}, { offset: '95%' });
-
 	}
 	counter();
 
-
-
 	var contentWayPoint = function () {
-		var i = 0;
 		$('.site-animate').waypoint(function (direction) {
-
 			if (direction === 'down' && !$(this.element).hasClass('site-animated')) {
-
-				i++;
-
 				$(this.element).addClass('item-animate');
 				setTimeout(function () {
-
 					$('body .site-animate.item-animate').each(function (k) {
 						var el = $(this);
 						setTimeout(function () {
@@ -127,7 +82,6 @@ $(document).ready(function ($) {
 							el.removeClass('item-animate');
 						}, k * 50, 'easeInOutExpo');
 					});
-
 				}, 100);
 
 			}
@@ -140,7 +94,6 @@ $(document).ready(function ($) {
 	var OnePageNav = function () {
 		$(".smoothscroll[href^='#'], #site-nav ul li a[href^='#']").on('click', function (e) {
 			e.preventDefault();
-
 			var hash = this.hash,
 				navToggler = $('.navbar-toggler');
 			$('html, body').animate({
@@ -148,8 +101,6 @@ $(document).ready(function ($) {
 			}, 700, 'easeInOutExpo', function () {
 				window.location.hash = hash;
 			});
-
-
 			if (navToggler.is(':visible')) {
 				navToggler.click();
 			}
@@ -159,7 +110,6 @@ $(document).ready(function ($) {
 		})
 	};
 	OnePageNav();
-
 
 	// magnific popup
 	$('.image-popup').magnificPopup({
@@ -181,14 +131,16 @@ $(document).ready(function ($) {
 			duration: 300 // don't foget to change the duration also in CSS
 		}
 	});
-
 	$('#m_date').datepicker({
 		'format': 'm/d/yyyy',
 		'autoclose': true
 	});
 	$('#m_time').timepicker();
 
-
-
-});
-
+	$(".err_msg").bind("DOMSubtreeModified", function () {
+		const eleId = this.id.split("_")[0];
+		const scrollId = eleId + "_label";
+		//document.getElementById(eleId).focus();
+		document.getElementById(scrollId).scrollIntoView();
+	});
+}

@@ -100,6 +100,7 @@ export class PackageItem extends Component {
                         <div className="btn-group-vertical btn-full w-100">
                             {periodOptions.map(({ price, period }) => {
                                 return <button className="btn btn-primary btn-full w-100"
+                                    key={price + "_" + period}
                                     onClick={() => {
                                         this.setState({ price, period, isExpanded: !this.state.isExpanded })
                                     }}>

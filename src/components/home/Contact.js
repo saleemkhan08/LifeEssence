@@ -10,23 +10,25 @@ export class Contact extends Component {
                             <h2 className="display-4">Get In Touch</h2>
                         </div>
                         <div className="col-md-7 site-animate">
-                            <form action="" method="post">
-                                <div className="form-group">
-                                    <label htmlFor="name" className="sr-only">Name</label>
-                                    <input type="text" className="form-control" id="name" placeholder="Name" />
-                                </div>
-                                <div className="form-group">
-                                    <label htmlFor="email" className="sr-only">Email</label>
-                                    <input type="text" className="form-control" id="email" placeholder="Email" />
-                                </div>
-                                <div className="form-group">
-                                    <label htmlFor="message" className="sr-only">Message</label>
-                                    <textarea name="message" id="message" cols="30" rows="8" className="form-control" placeholder="Write your message"></textarea>
-                                </div>
-                                <div className="form-group">
-                                    <input type="submit" className="btn btn-primary btn-lg" value="Send Message" />
-                                </div>
-                            </form>
+                            <div className="form-group">
+                                <label htmlFor="name" className="sr-only">Name</label>
+                                <input type="text" className="form-control" id="name" placeholder="Name" />
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="email" className="sr-only">Email</label>
+                                <input type="text" className="form-control" id="email" placeholder="Email" />
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="message" className="sr-only">Message</label>
+                                <textarea name="message" id="message" cols="30" rows="8" className="form-control" placeholder="Write your message"></textarea>
+                            </div>
+                            <div className="form-group">
+                                <button className="btn btn-primary btn-lg" onClick={() => {
+                                    alert("Coming soon..")
+                                }}>
+                                    Send Message
+                                </button>
+                            </div>
                         </div>
                         <div className="col-md-1"></div>
                         <div className="col-md-4 site-animate" >

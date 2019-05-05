@@ -13,10 +13,7 @@
         href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700|Raleway"
         rel="stylesheet"
       />
-      <link
-        href="http://www.lifeessence-ev.com/image/data/cart.png"
-        rel="icon"
-      />
+      <link href="images/life.png" rel="icon" />
       <link rel="stylesheet" href="css/bootstrap.min.css" />
       <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css" />
       <link rel="stylesheet" href="css/animate.css" />
@@ -60,15 +57,17 @@
     <script>
       var map;
       function initMap() {
-        map = new google.maps.Map(document.getElementById("map"), {
-          center: { lat: 26.3370572, lng: 50.1864183 },
-          zoom: 15
-        });
-        var marker = new google.maps.Marker({
-          position: { lat: 26.3370572, lng: 50.1864183 },
-          map: map,
-          title: "Life Essence"
-        });
+        setTimeout(function() {
+          map = new google.maps.Map(document.getElementById("map"), {
+            center: { lat: 26.3370572, lng: 50.1864183 },
+            zoom: 15
+          });
+          var marker = new google.maps.Marker({
+            position: { lat: 26.3370572, lng: 50.1864183 },
+            map: map,
+            title: "Life Essence"
+          });
+        }, 2000);
       }
     </script>
     <script
@@ -77,5 +76,6 @@
       defer
     ></script>
     <script src="js/main.js"></script>
+    <script src="js/scrollImprovements.js"></script>
   </body>
 </html>

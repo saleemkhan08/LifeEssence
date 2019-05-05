@@ -1,13 +1,17 @@
 import React, { Component } from 'react'
-
+import { Link } from "react-router-dom"
+import { auth } from "../../store"
 export class Navbar extends Component {
+    state = {
+        isLoggingOut: false
+    }
     render() {
         return (
             <nav className="navbar navbar-expand-lg navbar-dark site_navbar bg-dark site-navbar-light" id="site-navbar">
                 <div className="container">
-                    <a className="navbar-brand" href="index.html">
-                        <img src="http://www.lifeessence-ev.com/image/data/cart.png" alt="" style={{ marginRight: "10px" }} />
-                        Essence</a>
+                    <Link className="navbar-brand" to="/">
+                        <img src="/images/life.png" alt="" style={{ marginRight: "10px" }} />
+                        Essence</Link>
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#site-nav" aria-controls="site-nav" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="oi oi-menu"></span> Menu
                     </button>
@@ -19,30 +23,45 @@ export class Navbar extends Component {
                             <li className="nav-item"><a href="#section-gallery" className="nav-link">Packages</a></li>
                             <li className="nav-item"><a href="#section-clinic" className="nav-link">Clinic</a></li>
                             <li className="nav-item"><a href="#section-contact" className="nav-link">Contact</a></li>
-                            <li className="nav-item">
-                                <a href="#section-login"
-                                    data-toggle="modal"
-                                    target="_blank"
-                                    data-target="#loginModal"
-                                    className="nav-link">Login</a></li>
+                            {this.userOptions()}
                         </ul>
                     </div>
-                    {
-                        /*
-                        Home Page
-                        About Us
-                        Daily Menu
-                        Packages
-                        Subscribe Items
-                        Dietion Clinic
-                        Special Offers
-                        Contact Us
-                        */
-                    }
                 </div>
             </nav>
         )
     }
+
+    changeLogoutState = () => {
+        this.setState({ isLoggingOut: false })
+    }
+    userOptions = () => {
+        console.log("userOptions : auth.currentUser")
+        console.log(auth.currentUser)
+        if (auth.currentUser && this.state.isLoggingOut) {
+            setTimeout(this.changeLogoutState, 1000);
+        }
+        return (
+            <li className="nav-item">
+                {auth.currentUser ? <AccountLink uid={auth.currentUser.uid} /> : <LoginLink />}
+            </li>)
+    }
+}
+
+const AccountLink = (params) => {
+    return (<Link to={"/account/" + params.uid}
+        className="nav-link">
+        Account
+    </Link>)
+}
+
+const LoginLink = () => {
+    return (<a href="#section-login"
+        data-toggle="modal"
+        target="_blank"
+        data-target="#loginModal"
+        className="nav-link">
+        Login
+    </a>)
 }
 
 export default Navbar

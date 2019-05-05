@@ -31,3 +31,104 @@
     transform: rotate(360deg);
   }
 }
+
+.modal-left-bottom {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.modal-right-bottom {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.modal-center-bottom {
+  display: flex;
+  justify-content: center;
+}
+
+.invalid {
+  color: #900b0b;
+}
+
+.hide {
+  display: none;
+}
+.profile-pic {
+  border-radius: 50% !important;
+  height: 300px;
+  width: 300px;
+  padding: 7px;
+}
+.user-detail-cell {
+  vertical-align: middle !important;
+}
+
+.color-white {
+  color: white !important;
+}
+.loading-text {
+  width: 100%;
+  text-align: center;
+  height: 300px;
+  padding: 100px;
+}
+
+body {
+  overflow: hidden !important;
+  width: 100%;
+}
+
+button {
+  outline: none !important;
+}
+
+a {
+  outline: none !important;
+}
+
+.form-control {
+  height: 45px !important;
+}
+
+.close {
+  position: absolute !important;
+  top: 20px !important;
+  right: 30px !important;
+}
+
+.close-img {
+  height: 20px;
+  width: 20px;
+}
+
+.scrollUpBtn {
+  z-index: 1000;
+  width: 50px;
+  height: 50px;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #ffffff99 !important;
+  color: #72bc2c !important;
+  border-radius: 50% !important;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  font-size: 30px;
+}
+.owl-next,
+.owl-prev {
+  background: #ffffff99 !important;
+  color: #72bc2c !important;
+  border-radius: 50% !important;
+  margin-top: -15px !important;
+}
+
+.owl-next {
+  margin-right: 20px !important;
+}
+
+.owl-prev {
+  margin-left: 20px !important;
+}
